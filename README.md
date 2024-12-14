@@ -1,2 +1,2 @@
 My Hyprland Config.
-![Screenshot](dotfiles/)
+![Screenshot](dotfiles/screen.png)
