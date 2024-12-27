@@ -1,53 +1,49 @@
 {
   "layer": "top",
-  "position": "top",
-  "height": 16,
+  "position": "bottom",
+  "height": 36,
   "spacing": 0,
   "exclusive": true,
   "gtk-layer-shell": true,
   "passthrough": false,
   "fixed-center": true,
-  "modules-left": ["custom/logo", "hyprland/workspaces"],
-  "modules-right": ["pulseaudio", "battery", "clock", "tray"],
+  "modules-left": ["custom/logo", "hyprland/workspaces", "hyprland/window"],
+  "modules-right": ["custom/updates", "cpu", "memory", "keyboard-state", "pulseaudio", "clock", "tray"],
 
   "tray": {
     "show-passive-items": true,
     "spacing": 10
   },
 
-  "battery": {
-    "bat": "BAT1",
-    "adapter": "ADP0",
-    "interval": 1,
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "max-length": 20,
-    "format": "{icon}{capacity}%",
-    "format-warning": "{icon}{capacity}%",
-    "format-critical": "{icon}{capacity}%",
-    "format-charging": "<span foreground='#26ff55'> {capacity} %</span>",
-    "format-plugged": "<span foreground='#26ff55'>  {capacity}%</span>",
-    "format-alt": "{icon} {time}",
-    "format-full": "<span foreground='#26ff55'> {capacity} %</span>",
-    "format-icons": [" ", " ", " ", " ", " "]
-  },
-
   "clock": {
-    "format": "<span color='#6bfffd'> </span>{:%I:%M %p}",
-    "format-alt": "<span color='#ff9854'> </span>{:%a %b %d}",
+    "format": "<span>  </span>{:%I:%M %p}",
+    "format-alt": "<span>  </span>{:%a %b %d}",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
   },
 
+  "hyprland/window": {
+    "format": " {}",
+    "separate-outputs": true,
+    "icon": true
+  },
+
   "cpu": {
-    "format": "  {usage}%",
-    "tooltip": true,
-    "interval": 1
+     "interval": 1,
+     "format": "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}",
+     "format-icons": [
+          "<span color='#cdd6f4'>▁</span>", // green
+          "<span color='#cdd6f4'>▂</span>", // blue
+          "<span color='#cdd6f4'>▃</span>", // white
+          "<span color='#cdd6f4'>▄</span>", // white
+          "<span color='#cdd6f4'>▅</span>", // yellow
+          "<span color='#cdd6f4'>▆</span>", // yellow
+          "<span color='#cdd6f4'>▇</span>", // orange
+          "<span color='#cdd6f4'>█</span>"  // red
+     ]
   },
 
   "memory": {
-    "format": "  {used:0.2f}G"
+    "format": "  {used:0.2f}G"
   },
 
   "pulseaudio": {
@@ -55,17 +51,12 @@
     "format-muted": "  muted",
     "format-icons": {
       "headphone": " ",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
       "default": [" ", " ", " "]
     },
     "on-click": "pavucontrol"
   },
   "custom/logo": {
-    "format": "",
+    "format": "",
     "tooltip": false
   },
 
@@ -78,5 +69,22 @@
     "tooltip": false,
     "on-click": "wlogout -p layer-shell &",
     "format": " "
-  }
+  },
+
+  "custom/keyboard": {
+    "format": "{output}",
+    "exec": "hyprctl devices -j | jq -r '.keyboards[] | select(.active).layout'",
+    "interval": 1,
+    "tooltip": false
+  }, 
+  "custom/updates": {
+    "format": "{} {icon}",
+    "return-type": "json",
+    "format-icons": {
+        "has-updates": "󱍷 Need update",
+        "updated": " Lasted"
+    },
+    "exec-if": "which waybar-module-pacman-updates",
+    "exec": "waybar-module-pacman-updates --no-zero-output"
+}
 }
