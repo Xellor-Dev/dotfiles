@@ -12,7 +12,7 @@ window#waybar {
   transition-duration: 0.5s;
   /* background-color: #1e1e2e; */
   /* background-color: #181825; */
-  background-color: rgb(17, 17, 27);
+  background-color: rgba(17, 17, 27, 0.4);
 }
 
 window#waybar.hidden {
@@ -20,7 +20,7 @@ window#waybar.hidden {
 }
 
 #workspaces {
-  background: #1e1e2e;
+  background: transparent;
   margin: 2px 1px 3px 1px;
   padding: 0px 0px;
   margin: 5px 5px;
@@ -37,8 +37,6 @@ window#waybar.hidden {
   margin: 3px 3px;
   border-radius: 15px;
   border: 0px;
-  color: #fff;
-  /* background-color: #1e1e1e; */
   background-color: rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
   opacity: 1;
@@ -59,23 +57,25 @@ window#waybar.hidden {
 
 #clock,
 #pulseaudio,
-#battery,
 #cpu,
 #tray,
 #memory,
 #window {
   padding: 0px 8px;
   margin: 6px 3px;
-  color: #e5e5e5;
+  color: #cdd6f4;
   border-radius: 20px;
-  background-color: #1e1e1e;
+  background-color: rgba(30, 30, 46, 1);
 }
 #custom-logo {
   padding: 0px 10px;
+  color: #b4befe;
+  font-size: 22px;
 }
 
 #tray {
-  font-size: 10px;
+  background: transparent;
+  font-size: 14px;
 }
 
 #custom-sep {
@@ -83,42 +83,62 @@ window#waybar.hidden {
   color: #585b70;
 }
 
-#custom-spotify.playing {
-  color: #a6e3a1;
-}
-
 window#waybar.empty #window {
   background-color: transparent;
 }
 
 #cpu {
-  color: #94e2d5;
+  background: rgba(30, 30, 46, 0);
+  color: #cdd6f4;
 }
 
 #memory {
-  color: #cba6f7;
+  background: transparent;
+  color: #cdd6f4;
 }
 
 #clock {
-  color: #e3e3e3;
+  background: transparent;
+  color: #cdd6f4;
 }
 
 #clock.date {
-  color: #e3e3e3;
-}
-
-#window {
-  color: #a6e3a1;
+  background: transparent;
+  color: #cdd6f4;
 }
 
 #pulseaudio {
-  color: #fff;
-}
-
-#pulseaudio.muted {
-  color: #ff5b45;
+  background: transparent;
+  color: #cdd6f4;
 }
 
 tooltip {
   border-radius: 8px;
+  background-color: rgb(17, 17, 27);
+}
+#window {
+  background: None;
+  color: #cdd6f4;
+}
+
+#custom-updates {
+  padding: 5px;
+  background: None;
+  color: #cdd6f4;
+}
+
+@keyframes blink-update {
+	to {
+		background-color: dodgerblue;
+	}
+}
+
+#custom-pacman {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+#custom-pacman.pending-updates {
+	animation-name: blink-update;
+	animation-duration: 3s;
 }
