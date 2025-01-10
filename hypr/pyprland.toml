@@ -1,0 +1,14 @@
+[pyprland]
+include = []
+plugins = ["expose", "scratchpads", "toggle_special"]
+
+[expose]
+include_special = false
+
+[scratchpads.volume]
+animation = "fromRight"
+command = "pavucontrol"
+class = "org.pulseaudio.pavucontrol"
+size = "30% 90%"
+unfocus = "hide"
+lazy = true

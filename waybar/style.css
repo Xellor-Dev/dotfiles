@@ -1,0 +1,170 @@
+* {
+  min-height: 0;
+  font-family:
+    JetBrains Mono NL,
+    JetBrainsMonoNerd Font;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+window#waybar {
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  /* background-color: #1e1e2e; */
+  /* background-color: #181825; */
+  background-color: rgba(17, 17, 27, 0.4);
+}
+
+window#waybar.hidden {
+  opacity: 0.5;
+}
+
+#workspaces {
+  background: transparent;
+  margin: 2px 1px 3px 1px;
+  padding: 0px 0px;
+  margin: 5px 5px;
+  border-radius: 15px;
+  border: 0px;
+  font-style: normal;
+  opacity: 0.8;
+  font-size: 16px;
+  color: #cdd6f4;
+}
+
+#workspaces button {
+  color: #b4befe;
+  padding: 1px 1px;
+  margin: 3px 3px;
+  border-radius: 30px;
+  border: 0px;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all 0.3s linear;
+  opacity: 1;
+}
+
+#workspaces button.active {
+  color: #000;
+  background: #b4befe;
+  border-radius: 15px;
+  min-width: 40px;
+  transition: all 0.3s linear;
+  opacity: 1;
+}
+
+#workspaces button.urgent {
+  background-color: #ff441f;
+}
+#custom-cava {
+  padding: 5px;
+  background: None;
+  color: #cdd6f4;
+}
+#clock,
+#pulseaudio,
+#cpu,
+#tray,
+#memory,
+#window {
+  padding: 0px 8px;
+  margin: 6px 3px;
+  color: #cdd6f4;
+  border-radius: 20px;
+  background-color: rgba(30, 30, 46, 1);
+}
+#custom-logo {
+  padding: 0px 10px;
+  color: #b4befe;
+  font-size: 22px;
+}
+
+#tray {
+  background: transparent;
+  font-size: 14px;
+}
+
+#custom-sep {
+  padding: 0px;
+  color: #585b70;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+#cpu {
+  background: rgba(30, 30, 46, 0);
+  color: #cdd6f4;
+  animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+#memory {
+  background: transparent;
+  color: #cdd6f4;
+}
+
+#clock {
+  background: transparent;
+  color: #cdd6f4;
+}
+
+#clock.date {
+  background: transparent;
+  color: #cdd6f4;
+}
+
+#pulseaudio {
+  background: transparent;
+  color: #cdd6f4;
+}
+
+tooltip {
+  border-radius: 8px;
+  background-color: rgb(17, 17, 27);
+}
+#window {
+  background: None;
+  color: #cdd6f4;
+}
+
+#custom-updates {
+  padding: 5px;
+  background: None;
+  color: #cdd6f4;
+}
+
+@keyframes blink-update {
+	to {
+		background-color: dodgerblue;
+	}
+}
+
+#custom-pacman {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+#custom-pacman.pending-updates {
+	animation-name: blink-update;
+	animation-duration: 3s;
+}
+
+#mpris {
+  padding: 5px;
+  background: none;
+  color: #cdd6f4;
+}
+
+#custom-swaync {
+  padding: 5px;
+  background: none;
+  color: #cdd6f4;
+}
+
+#custom-keyboard {
+  padding: 5px;
+  background: none;
+  color: #cdd6f4;
+}

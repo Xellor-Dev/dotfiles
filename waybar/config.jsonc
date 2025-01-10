@@ -1,0 +1,119 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "spacing": 0,
+  "exclusive": true,
+  "gtk-layer-shell": true,
+  "passthrough": false,
+  "fixed-center": true,
+  "modules-left": ["custom/logo", "custom/sep", "hyprland/workspaces", "custom/sep", "hyprland/window"],
+  "modules-right": ["custom/keyboard", "custom/swaync", "custom/updates", "cpu", "memory", "keyboard-state", "pulseaudio", "clock", "custom/sep", "tray"],
+  "modules-center": ["custom/cava", "mpris", "custom/cava"],
+  "tray": {
+    "show-passive-items": true,
+    "spacing": 5
+  },
+  "clock": {
+    "format": "<span>  </span>{:%I:%M %p}",
+    "format-alt": "<span>  </span>{:%a %b %d}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "hyprland/window": {
+    "format": " {}",
+    "separate-outputs": true,
+    "icon": false
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}",
+    "format-icons": [
+      "<span color='#cdd6f4'>▁</span>",
+      "<span color='#cdd6f4'>▂</span>",
+      "<span color='#cdd6f4'>▃</span>",
+      "<span color='#cdd6f4'>▄</span>",
+      "<span color='#cdd6f4'>▅</span>",
+      "<span color='#cdd6f4'>▆</span>",
+      "<span color='#cdd6f4'>▇</span>",
+      "<span color='#cdd6f4'>█</span>"
+    ],
+    "on-click": "ghostty -e zsh -c 'glances; exec zsh'"
+  },
+  "memory": {
+    "format": "  {used:0.2f}G"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "  muted",
+    "format-icons": {
+      "headphone": " ",
+      "default": [" ", " ", " "]
+    },
+    "on-click": "pypr toggle volume",
+    "on-click-right": "pypr toggle qpwgraph"
+  },
+  "custom/logo": {
+    "format": "",
+    "tooltip": true,
+    "on-click": "ghostty -e zsh -c 'neofetch; exec zsh'"
+  },
+  "custom/sep": {
+    "format": "|",
+    "tooltip": false
+  },
+  "custom/power": {
+    "tooltip": false,
+    "on-click": "wlogout -p layer-shell &",
+    "format": " "
+  },
+  "custom/updates": {
+    "format": "{} {icon}",
+    "return-type": "json",
+    "format-icons": {
+      "has-updates": "󱍷 Need update",
+      "updated": " Lasted"
+    },
+    "exec-if": "which waybar-module-pacman-updates",
+    "exec": "waybar-module-pacman-updates --no-zero-output"
+  },
+  "mpris": {
+    "format": "󰠃 {artist} -  {title}",
+    "exec": "playerctl metadata --format '{{artist}} - {{title}}'",
+    "interval": 1,
+    "on-click": false
+  },
+  "custom/cava": {
+    "exec": "~/.config/waybar/scripts/cava.sh",
+    "format": "{}",
+    "on-click": "ghostty -e zsh -c 'cava; exec zsh'"
+  },
+  "custom/swaync": {
+    "tooltip": true,
+    "format": " {} {icon} ",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "󰂛<span foreground='red'><sup></sup></span>",
+      "dnd-none": "󰂛",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "󰂛<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": "󰂛"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  "hyprland/workspaces": {
+    "format": "{name}"
+  },
+"custom/keyboard": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/keyboard-layout.sh",
+    "interval": 1,
+    "tooltip": false
+}
+}

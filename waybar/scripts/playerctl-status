@@ -1,0 +1,23 @@
+#!/bin/bash
+
+player_status=$(playerctl status 2>/dev/null)
+
+if [ "$player_status" == "Playing" ]; then
+    icon="" # Иконка play
+elif [ "$player_status" == "Paused" ]; then
+    icon="" # Иконка pause
+else
+    echo '{"text": "No player", "class": "stopped"}'
+    exit 0
+fi
+
+title=$(playerctl metadata title 2>/dev/null)
+artist=$(playerctl metadata artist 2>/dev/null)
+
+# Если данных нет, выводим текст о том, что ничего не играет
+if [ -z "$title" ] && [ -z "$artist" ]; then
+    echo '{"text": "No track", "class": "stopped"}'
+else
+    # Вывод данных для Waybar
+    echo "{\"text\": \"$icon $artist - $title\", \"class\": \"$player_status\"}"
+fi
