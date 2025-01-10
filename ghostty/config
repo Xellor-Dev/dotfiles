@@ -1,0 +1,15 @@
+background = 1e1e2e
+foreground = cdd6f4
+background-opacity = 0.85
+window-padding-x = 10
+window-padding-y = 10
+theme = catppuccin-mocha
+font-size = 15
+font-synthetic-style = bold
+mouse-hide-while-typing = true
+copy-on-select = true
+
+
+keybind = ctrl+l=clear_screen
+keybind = ctrl+r=reload_config
+keybind = ctrl+d=toggle_window_decorations
