@@ -26,5 +26,6 @@ Welcome to my Hyprland configuration repository! 🌟 This setup is tailored for
 ├── rofi/               # Rofi themes and scripts
 ├── swaync/             # Swaync notification center configs
 ├── neofetch/           # Neofetch ASCII art and config
+├── ghostty/            # Ghostty term config
 ├── .wallpapers/        # Wallpaper collection
 └── README.md           # This file
