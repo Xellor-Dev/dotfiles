@@ -22,6 +22,15 @@ fi
 echo "Creating a commit with the message: \"$COMMIT_MESSAGE\""
 git commit -m "$COMMIT_MESSAGE"
 
+# Pull the latest changes from the remote repository
+echo "Pulling latest changes from the remote repository..."
+git pull origin main --rebase
+
+if [ $? -ne 0 ]; then
+    echo "Error while pulling changes. Resolve conflicts and try again."
+    exit 1
+fi
+
 # Push the changes
 echo "Pushing changes to the remote repository..."
 git push origin main
