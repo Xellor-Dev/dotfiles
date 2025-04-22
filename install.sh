@@ -4,7 +4,7 @@ set -e
 
 ### Пакеты, которые будут установлены
 packages=(
-    bspwm sxhkd kitty eww picom dunst feh rofi zsh \
+    bspwm sxhkd kitty picom dunst feh rofi zsh \
     papirus-icon-theme ttf-jetbrains-mono unzip wget curl git
 )
 
@@ -34,46 +34,54 @@ copy_configs() {
 setup_bspwm() {
     echo "[+] Настройка bspwm и sxhkd..."
     mkdir -p $HOME/.config/bspwm $HOME/.config/sxhkd
+
     cat > $HOME/.config/bspwm/bspwmrc <<EOF
 #!/bin/sh
-sxhkd &
-eww daemon &
-eww open bar &
-picom --config ~/.config/picom/picom.conf &
-dunst &
-feh --bg-scale \$HOME/Pictures/wallpapers/default.jpg &
 
+# Запуск фоновых приложений
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+# Настройка рабочих столов
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
-bspc config border_width 2
-bspc config window_gap 10
-bspc config split_ratio 0.5
-bspc config borderless_monocle true
-bspc config gapless_monocle true
+
+# Настройки поведения окон
+bspc config border_width         2
+bspc config window_gap           10
+bspc config split_ratio          0.5
+bspc config borderless_monocle  true
+bspc config gapless_monocle     true
+bspc config focus_follows_pointer true
 EOF
     chmod +x $HOME/.config/bspwm/bspwmrc
 
     cat > $HOME/.config/sxhkd/sxhkdrc <<EOF
-# bspwm hotkeys
+# Запуск терминала
 super + Return
     kitty
 
+# Запуск rofi
 super + d
     rofi -show drun
 
+# Перезапуск sxhkd
 super + Escape
     pkill -USR1 -x sxhkd
 
-# focus movement
+# Перемещение фокуса по направлению
 super + {h,j,k,l}
     bspc node -f {west,south,north,east}
 
-# move windows
+# Перемещение окон
 super + shift + {h,j,k,l}
     bspc node -s {west,south,north,east}
 
-# close window
+# Удаление окна
 super + w
     bspc node -c
+
+# Перезапуск bspwm
+super + alt + r
+    bspc wm -r
 EOF
 }
 
